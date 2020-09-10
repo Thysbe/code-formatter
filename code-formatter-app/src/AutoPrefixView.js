@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import AutoPrefix from "./AutoPrefixer";
 import "react-dropdown/style.css";
 
 export default class AutoPrefixView extends React.Component {
@@ -28,9 +29,10 @@ export default class AutoPrefixView extends React.Component {
     this.setState({ prefixType: event.target.value });
   }
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.inputText);
+    // function goes here andrew
+    var output = AutoPrefix(this.state.inputText, this.state.prefixText);
     this.setState({
-      outputText: "321",
+      outputText: output,
     });
     event.preventDefault();
   }
