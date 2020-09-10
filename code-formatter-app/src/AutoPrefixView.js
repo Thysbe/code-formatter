@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 export default class AutoPrefixView extends React.Component {
   constructor() {
     super();
-    this.onClick = this.handleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlePrefixChange = this.handlePrefixChange.bind(this);
     this.handlePrefixTypeChange = this.handlePrefixTypeChange.bind(this);
-
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       preFixOptions: ["PrefixClassName"],
       inputText: "",
@@ -30,29 +27,20 @@ export default class AutoPrefixView extends React.Component {
   handlePrefixTypeChange(event) {
     this.setState({ prefixType: event.target.value });
   }
-
-  handleClick(event) {
+  handleSubmit(event) {
+    alert("A name was submitted: " + this.state.inputText);
     this.setState({
-      outputText: "hello",
-      inputText: "hello2",
+      outputText: "321",
     });
-    console.log("hhi!");
     event.preventDefault();
   }
 
   render() {
     return (
       <div className="app-container">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="input-container">
             <div className="flex-col" style={{ width: "20%" }}>
-              {/* <Dropdown
-                className="dropdown"
-                options={this.state.preFixOptions}
-                value={this.state.selectedPrefixOption}
-                onChange={this.handlePrefixTypeChange}
-                placeholder="Select an option"
-              /> */}
               <div className="flex-row">
                 Prefix:
                 <input
@@ -62,7 +50,7 @@ export default class AutoPrefixView extends React.Component {
                 />
               </div>
               <div className="button">
-                <button onClick={this.handleClick}>Auto-Prefix</button>
+                <input type="submit" value="Auto Prefix" />
               </div>
             </div>
             <div className="flex-col" style={{ width: "40%" }}>
@@ -80,7 +68,6 @@ export default class AutoPrefixView extends React.Component {
                 className="text-input-field"
                 name="output"
                 value={this.state.outputText}
-                onChange={this.handleChange}
               ></textarea>
             </div>
           </div>
